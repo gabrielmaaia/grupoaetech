@@ -2,7 +2,6 @@ import React from 'react';
 import { 
   Bot, 
   Database, 
-  Network, 
   Code2, 
   Check, 
   ArrowUpRight 
@@ -12,68 +11,53 @@ export default function Services({ onSelectService }) {
   const services = [
     {
       title: 'Automação de Processos',
-      subtitle: 'Eficiência e Redução de Custos',
+      subtitle: 'Fluxos Inteligentes & n8n',
       icon: Bot,
       popular: false,
+      tag: 'Eficiência Operacional',
       description:
-        'Substitua fluxos manuais repetitivos por rotinas automatizadas inteligentes e conexões diretas entre plataformas.',
+        'Orquestração de rotinas corporativas com n8n, integração entre plataformas e automações de atendimento e notificações via API oficial do WhatsApp (WABA).',
       features: [
-        'Robôs de automação (RPA)',
-        'Integração de APIs e ecossistemas',
-        'Notificações e relatórios em tempo real',
-        'Redução drástica de falhas operacionais',
+        'Orquestração de fluxos avançados com n8n',
+        'Disparo e automações no WhatsApp Oficial (WABA)',
+        'Integração de APIs, Webhooks e sistemas (ERP/CRM)',
+        'Eliminação de tarefas manuais e alertas em tempo real',
       ],
-      tag: 'Otimização Contínua',
     },
     {
-      title: 'Gestão e Migração de Dados',
-      subtitle: 'Segurança e Continuidade',
-      icon: Database,
-      popular: true, // destacando como fundamental
-      description:
-        'Migre bancos legados e estruture dados críticos sem perda de integridade, interrupção ou riscos de conformidade.',
-      features: [
-        'Pipelines ETL/ELT de alto volume',
-        'Migração segura para a nuvem',
-        'Modelagem e governança de dados',
-        'Conformidade técnica e LGPD',
-      ],
-      tag: 'Missão Crítica',
-    },
-    {
-      title: 'Infraestrutura de TI',
-      subtitle: 'Alta Disponibilidade e Nuvem',
-      icon: Network,
-      popular: false,
-      description:
-        'Projetos de infraestrutura física, virtual e cloud focados em uptime contínuo, velocidade de rede e proteção cibernética.',
-      features: [
-        'Arquitetura Cloud & On-Premise',
-        'Monitoramento e observabilidade em nuvem',
-        'Segurança de perímetro e firewalls',
-        'Planos de contingência e recuperação',
-      ],
-      tag: 'Resiliência Total',
-    },
-    {
-      title: 'Desenvolvimento de Software',
-      subtitle: 'Engenharia Sob Demanda',
+      title: 'Desenvolvimento de Sistemas',
+      subtitle: 'Plataformas & Software',
       icon: Code2,
-      popular: false,
+      popular: true, // DESTAQUE CORPORATIVO NO CENTRO
+      tag: 'Solução Sob Medida',
       description:
-        'Criação de soluções digitais personalizadas, plataformas web, microsserviços e modernização de legado.',
+        'Criação de sistemas web, portais corporativos e aplicativos exclusivos, construídos exatamente para as regras do seu negócio.',
       features: [
-        'Aplicações Web e Mobile de alta performance',
-        'APIs REST e arquitetura escalável',
-        'Modernização de sistemas legados',
-        'Código limpo, seguro e documentado',
+        'Sistemas Web e Painéis Administrativos',
+        'Interfaces visuais modernas e intuitivas',
+        'Aplicativos e Portais corporativos exclusivos',
+        'Código proprietário, limpo e escalável',
       ],
-      tag: 'Tecnologia Customizada',
+    },
+    {
+      title: 'Infraestrutura de Dados',
+      subtitle: 'Da Planilha ao Banco Estruturado',
+      icon: Database,
+      popular: false,
+      tag: 'Bancos de Dados',
+      description:
+        'Substituição definitiva de planilhas manuais e descentralizadas por bancos de dados estruturados, seguros e de alta confiabilidade.',
+      features: [
+        'Migração segura de planilhas para bancos relacionais',
+        'Fim de arquivos corrompidos e retrabalho manual',
+        'Modelagem, estruturação e integridade das bases',
+        'Backups automáticos e prontidão para relatórios',
+      ],
     },
   ];
 
   return (
-    <section id="servicos" className="py-24 bg-gradient-to-b from-[#080B10] via-[#0B0F17] to-[#080B10] relative scroll-mt-24">
+    <section id="servicos" className="py-24 bg-gradient-to-b from-[#080B10] via-[#0B0F17] to-[#080B10] relative scroll-mt-4">
       {/* Decorative background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-7xl h-[400px] bg-[#C5A059]/5 rounded-full blur-[160px] pointer-events-none"></div>
 
@@ -87,15 +71,15 @@ export default function Services({ onSelectService }) {
             </span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Serviços projetados para a era da inteligência corporativa
+            Serviços desenhados para a eficiência da sua organização
           </h2>
           <p className="text-slate-400 text-base sm:text-lg">
-            Soluções completas com metodologia ágil, governança rigorosa e compromisso com o retorno sobre o investimento.
+            Soluções práticas com engenharia sob medida, transparência e compromisso com o resultado real do seu negócio.
           </p>
         </div>
 
-        {/* Services Grid (Layout similar a cards de planos/produtos) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mt-16">
+        {/* 3 Services Grid (Destaque Central em Desenvolvimento de Sistemas) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mt-16 max-w-6xl mx-auto">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
@@ -109,16 +93,16 @@ export default function Services({ onSelectService }) {
               >
                 {/* Popular Pill */}
                 {service.popular && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-gradient-to-r from-[#C5A059] to-[#DFBF79] text-[11px] font-bold uppercase tracking-wider text-black shadow-md">
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3.5 py-1 rounded-full bg-gradient-to-r from-[#C5A059] to-[#DFBF79] text-[11px] font-bold uppercase tracking-wider text-black shadow-md whitespace-nowrap">
                     Destaque Corporativo
                   </div>
                 )}
 
                 <div>
-                  {/* Top Tag & Icon */}
-                  <div className="flex items-center justify-between mb-5">
+                  {/* Top Tag & Icon: Ícone fixo na esquerda e cardzinho com tamanho fixo na direita */}
+                  <div className="flex items-center justify-between mb-6">
                     <div
-                      className={`w-12 h-12 rounded-xl flex items-center justify-center transition-colors ${
+                      className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors ${
                         service.popular
                           ? 'bg-[#C5A059] text-black shadow-md shadow-[#C5A059]/30'
                           : 'bg-slate-800 text-[#C5A059] border border-slate-700/80'
@@ -126,9 +110,13 @@ export default function Services({ onSelectService }) {
                     >
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider px-2.5 py-1 rounded-md bg-slate-800/60 border border-slate-700/40">
-                      {service.tag}
-                    </span>
+
+                    {/* Cardzinho na direita com tamanho fixo e padronizado em todos os cards */}
+                    <div className="w-40 h-8 rounded-lg bg-slate-800/80 border border-slate-700/60 flex items-center justify-center flex-shrink-0 shadow-sm">
+                      <span className="text-[10.5px] font-semibold text-slate-300 uppercase tracking-wider text-center px-2 truncate">
+                        {service.tag}
+                      </span>
+                    </div>
                   </div>
 
                   {/* Title & Description */}
@@ -195,4 +183,3 @@ export default function Services({ onSelectService }) {
     </section>
   );
 }
-

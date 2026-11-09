@@ -3,19 +3,22 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Heart, MessageCircle, ExternalLink } from 'lucide-react';
 import { InstagramIcon } from './BrandIcons';
+import { companyConfig } from '../config/company';
 
 // Swiper core styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 
 export default function InstagramCarousel() {
-  // Lista de posts configurável (placeholders quadrados prontos para receber imagens ou iframes reais)
+  // Lista de posts pronta para receber imagens e links reais do Instagram da Ætech
   const posts = [
     {
       id: 1,
-      tag: 'Infraestrutura',
-      title: 'Modernização de Data Center',
-      caption: 'Implementação de arquitetura redundante garantindo alta estabilidade operacional.',
+      image: null, // Substituir pela URL ou import de imagem real do post
+      postUrl: companyConfig.social.instagram,
+      tag: 'Engenharia de Dados',
+      title: 'Da Planilha ao Banco de Dados',
+      caption: 'Substituição definitiva de planilhas manuais e lentas por bancos de dados estruturados e seguros.',
       likes: '142',
       comments: '18',
       date: 'Há 2 dias',
@@ -23,9 +26,11 @@ export default function InstagramCarousel() {
     },
     {
       id: 2,
-      tag: 'Automação',
-      title: 'Robôs de Processos em Produção',
-      caption: 'Redução de 80% no tempo de processamento fiscal com automação de ponta.',
+      image: null,
+      postUrl: companyConfig.social.instagram,
+      tag: 'Automação & WABA',
+      title: 'WhatsApp Oficial (WABA) + n8n',
+      caption: 'Disparos automáticos e notificações em tempo real conectando sistemas corporativos à API oficial do WhatsApp sem risco de banimento.',
       likes: '235',
       comments: '34',
       date: 'Há 4 dias',
@@ -33,6 +38,8 @@ export default function InstagramCarousel() {
     },
     {
       id: 3,
+      image: null,
+      postUrl: companyConfig.social.instagram,
       tag: 'Engenharia de Dados',
       title: 'Migração de Bases Críticas',
       caption: 'Mais de 10TB migrados para a nuvem com zero downtime e governança total.',
@@ -43,9 +50,11 @@ export default function InstagramCarousel() {
     },
     {
       id: 4,
-      tag: 'Software',
+      image: null,
+      postUrl: companyConfig.social.instagram,
+      tag: 'Sistemas Sob Medida',
       title: 'Plataforma Corporativa Sob Medida',
-      caption: 'Microsserviços escaláveis conectando operações de ponta a ponta.',
+      caption: 'Microsserviços escaláveis conectando operações de ponta a ponta com estabilidade técnica.',
       likes: '312',
       comments: '42',
       date: 'Há 1 semana',
@@ -53,9 +62,11 @@ export default function InstagramCarousel() {
     },
     {
       id: 5,
-      tag: 'Cultura & Tech',
+      image: null,
+      postUrl: companyConfig.social.instagram,
+      tag: 'Cultura & Engenharia',
       title: 'Time de Engenharia Ætech',
-      caption: 'Inovação constante e foco na entrega de valor real para nossos parceiros.',
+      caption: 'Inovação constante e foco na entrega de valor real e mensurável para nossos parceiros.',
       likes: '274',
       comments: '29',
       date: 'Há 2 semanas',
@@ -63,9 +74,11 @@ export default function InstagramCarousel() {
     },
     {
       id: 6,
-      tag: 'Segurança',
+      image: null,
+      postUrl: companyConfig.social.instagram,
+      tag: 'Segurança & LGPD',
       title: 'Auditoria e Compliance',
-      caption: 'Blindagem de perímetros digitais e proteção de dados segundo a LGPD.',
+      caption: 'Blindagem de informações e governança rigorosa em total conformidade com a LGPD.',
       likes: '198',
       comments: '16',
       date: 'Há 3 semanas',
@@ -94,7 +107,7 @@ export default function InstagramCarousel() {
 
           <div>
             <a
-              href="https://instagram.com"
+              href={companyConfig.social.instagram}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-white bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-[#C5A059] transition-all group"
@@ -143,16 +156,32 @@ export default function InstagramCarousel() {
                 <div className="group relative rounded-2xl overflow-hidden border border-slate-800 bg-slate-900/60 transition-all duration-300 hover:border-[#C5A059]/70 hover:shadow-xl hover:shadow-[#C5A059]/10">
                   
                   {/* Aspect-square Container */}
-                  <div className={`aspect-square w-full relative p-6 flex flex-col justify-between bg-gradient-to-br ${post.gradient}`}>
+                  <div className={`aspect-square w-full relative p-6 flex flex-col justify-between ${!post.image ? `bg-gradient-to-br ${post.gradient}` : 'bg-black'}`}>
                     
-                    {/* Background Tech Mesh lines */}
-                    <div 
-                      className="absolute inset-0 opacity-15 pointer-events-none"
-                      style={{
-                        backgroundImage: `radial-gradient(circle, #C5A059 1px, transparent 1px)`,
-                        backgroundSize: '16px 16px'
-                      }}
-                    ></div>
+                    {/* Real Image If Available */}
+                    {post.image && (
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    )}
+
+                    {/* Gradient overlay for readability if real image is present */}
+                    {post.image && (
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/60 pointer-events-none"></div>
+                    )}
+
+                    {/* Background Tech Mesh lines (fallback when no image) */}
+                    {!post.image && (
+                      <div 
+                        className="absolute inset-0 opacity-15 pointer-events-none"
+                        style={{
+                          backgroundImage: `radial-gradient(circle, #C5A059 1px, transparent 1px)`,
+                          backgroundSize: '16px 16px'
+                        }}
+                      ></div>
+                    )}
 
                     {/* Top Row: Tag & Instagram Icon */}
                     <div className="relative z-10 flex items-center justify-between">
@@ -190,9 +219,9 @@ export default function InstagramCarousel() {
                     </div>
 
                     {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-[#080B10]/80 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-20">
+                    <div className="absolute inset-0 bg-[#080B10]/85 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-20">
                       <a
-                        href="https://instagram.com"
+                        href={post.postUrl || companyConfig.social.instagram}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-[#C5A059] to-[#DFBF79] text-black text-xs font-bold uppercase tracking-wider transform translate-y-2 group-hover:translate-y-0 transition-transform shadow-lg shadow-[#C5A059]/30"

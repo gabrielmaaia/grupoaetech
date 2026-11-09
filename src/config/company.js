@@ -3,7 +3,7 @@ export const companyConfig = {
   legalName: 'Grupo Ætech',
   tagline: 'Engenharia para organizações inteligentes',
   description:
-    'Potencializamos a eficiência e segurança do seu negócio através de automação avançada de processos, gestão e migração de dados de missão crítica, infraestrutura de TI resiliente e desenvolvimento de software sob medida.',
+    'Potencializamos a eficiência e segurança do seu negócio através de automação avançada de processos, infraestrutura de dados de alta resiliência e desenvolvimento de sistemas sob medida.',
   domain: 'grupoaetech.com.br',
   domainUrl: 'https://grupoaetech.com.br',
   email: 'contato@grupoaetech.com.br',
@@ -16,9 +16,9 @@ export const companyConfig = {
     display: 'Aracaju, Sergipe - Brasil',
   },
   social: {
-    instagram: 'https://instagram.com/grupoaetech',
-    linkedin: 'https://linkedin.com/company/grupoaetech',
     whatsapp: 'https://wa.me/5579999999999',
+    instagram: 'https://instagram.com/grupoaetech',
+    facebook: 'https://facebook.com/grupoaetech',
   },
   services: [
     {
@@ -26,16 +26,12 @@ export const companyConfig = {
       name: 'Automação de Processos',
     },
     {
+      id: 'sistemas',
+      name: 'Desenvolvimento de Sistemas',
+    },
+    {
       id: 'dados',
-      name: 'Gestão e Migração de Dados',
-    },
-    {
-      id: 'infra',
-      name: 'Infraestrutura de TI',
-    },
-    {
-      id: 'software',
-      name: 'Desenvolvimento de Software',
+      name: 'Infraestrutura de Dados',
     },
   ],
 };

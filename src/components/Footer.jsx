@@ -8,14 +8,13 @@ import {
   ArrowRight,
   ShieldCheck
 } from 'lucide-react';
-import { InstagramIcon, LinkedinIcon } from './BrandIcons';
+import { InstagramIcon, FacebookIcon, WhatsAppIcon } from './BrandIcons';
+import { companyConfig, getWhatsAppLink } from '../config/company';
 import headerLogo from '../assets/header-logo.png';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const whatsappNumber = "5579999999999"; // Substituir pelo número real da Ætech
-  const whatsappMessage = encodeURIComponent("Olá! Gostaria de falar com um especialista da Ætech sobre soluções para a minha empresa.");
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+  const whatsappUrl = getWhatsAppLink("Olá! Gostaria de falar com um especialista da Ætech sobre soluções para a minha empresa.");
 
   return (
     <footer id="contato" className="bg-[#05070B] border-t border-slate-800/80 text-slate-300 relative scroll-mt-24">
@@ -36,7 +35,7 @@ export default function Footer() {
                 Fale agora com a equipe de engenharia da Ætech
               </h3>
               <p className="text-slate-400 text-sm sm:text-base max-w-xl">
-                Agende um diagnóstico inicial sem compromisso com nossos especialistas e descubra como otimizar sua infraestrutura e processos corporativos.
+                Agende um diagnóstico inicial sem compromisso com nossos especialistas e descubra como otimizar seus sistemas, automações e infraestrutura de dados.
               </p>
             </div>
 
@@ -47,7 +46,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-3 px-6 py-4 rounded-xl text-sm font-bold uppercase tracking-wider text-black bg-gradient-to-r from-[#C5A059] via-[#DFBF79] to-[#C5A059] hover:brightness-110 shadow-lg shadow-[#C5A059]/25 hover:shadow-xl hover:shadow-[#C5A059]/35 transition-all text-center"
               >
-                <MessageCircle className="w-5 h-5 fill-current" />
+                <WhatsAppIcon className="w-5 h-5 text-black flex-shrink-0" />
                 <span>Conversar no WhatsApp</span>
               </a>
 
@@ -78,12 +77,21 @@ export default function Footer() {
             </div>
 
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
-              Engenharia de precisão para organizações inteligentes. Infraestrutura robusta, automação de processos, gestão avançada de dados e software sob medida.
+              Engenharia de precisão para organizações inteligentes. Desenvolvimento de sistemas sob medida, automação de processos com n8n & WABA e infraestrutura de dados moderna.
             </p>
 
             <div className="flex items-center gap-3 text-slate-400">
               <a
-                href="https://instagram.com"
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp Ætech"
+                className="w-9 h-9 rounded-lg bg-slate-900 border border-slate-800 hover:border-[#C5A059] hover:text-[#C5A059] flex items-center justify-center transition-colors"
+              >
+                <WhatsAppIcon className="w-4 h-4" />
+              </a>
+              <a
+                href={companyConfig.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram Ætech"
@@ -92,22 +100,13 @@ export default function Footer() {
                 <InstagramIcon className="w-4 h-4" />
               </a>
               <a
-                href="https://linkedin.com"
+                href={companyConfig.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="LinkedIn Ætech"
+                aria-label="Facebook Ætech"
                 className="w-9 h-9 rounded-lg bg-slate-900 border border-slate-800 hover:border-[#C5A059] hover:text-[#C5A059] flex items-center justify-center transition-colors"
               >
-                <LinkedinIcon className="w-4 h-4" />
-              </a>
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="WhatsApp Ætech"
-                className="w-9 h-9 rounded-lg bg-slate-900 border border-slate-800 hover:border-[#C5A059] hover:text-[#C5A059] flex items-center justify-center transition-colors"
-              >
-                <MessageCircle className="w-4 h-4" />
+                <FacebookIcon className="w-4 h-4" />
               </a>
             </div>
           </div>

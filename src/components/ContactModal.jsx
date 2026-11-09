@@ -101,9 +101,8 @@ export default function ContactModal({ isOpen, onClose, defaultService = '' }) {
                 className="w-full px-3.5 py-2.5 bg-slate-900/90 border border-slate-700/80 rounded-xl text-sm text-white focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] transition-all"
               >
                 <option value="Automação de Processos">Automação de Processos</option>
-                <option value="Gestão e Migração de Dados">Gestão e Migração de Dados</option>
-                <option value="Infraestrutura de TI">Infraestrutura de TI</option>
-                <option value="Desenvolvimento de Software">Desenvolvimento de Software</option>
+                <option value="Desenvolvimento de Sistemas">Desenvolvimento de Sistemas</option>
+                <option value="Infraestrutura de Dados">Infraestrutura de Dados</option>
                 <option value="Consultoria Geral">Outro / Consultoria Geral</option>
               </select>
             </div>

@@ -6,7 +6,7 @@ import Services from './components/Services';
 import InstagramCarousel from './components/InstagramCarousel';
 import Footer from './components/Footer';
 import ContactModal from './components/ContactModal';
-import { MessageCircle } from 'lucide-react';
+import { WhatsAppIcon } from './components/BrandIcons';
 import { getWhatsAppLink } from './config/company';
 
 export default function App() {
@@ -50,7 +50,7 @@ export default function App() {
         aria-label="Fale Conosco no WhatsApp"
         className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 hover:bg-emerald-400 group"
       >
-        <MessageCircle className="w-7 h-7 fill-white text-emerald-500" />
+        <WhatsAppIcon className="w-7 h-7 text-white fill-current" />
         <span className="absolute right-16 bg-slate-900/95 text-slate-100 text-xs font-semibold px-3 py-1.5 rounded-lg border border-slate-700 shadow-xl opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity whitespace-nowrap">
           Fale com um Especialista
         </span>
