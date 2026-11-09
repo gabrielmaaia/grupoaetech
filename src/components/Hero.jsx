@@ -28,9 +28,13 @@ export default function Hero({ onOpenContact }) {
           {/* Left / Main Text Column */}
           <div className="lg:col-span-6 text-center lg:text-left space-y-7">
             
-            {/* Badge Sem Ícone de IA */}
-            <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-slate-900/90 border border-[#C5A059]/30 text-xs font-semibold text-[#DFBF79] shadow-sm shadow-[#C5A059]/10">
-              <span className="tracking-wide uppercase">Soluções Corporativas de Alta Performance</span>
+            {/* Badge com Bolinha Pulsando Dourada */}
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-[#C5A059]/30 text-xs font-semibold text-[#DFBF79] shadow-sm shadow-[#C5A059]/10">
+              <span className="relative flex h-2 w-2 flex-shrink-0">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#DFBF79] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#C5A059]"></span>
+              </span>
+              <span className="tracking-wide uppercase text-[11px] sm:text-xs">Soluções Corporativas de Alta Performance</span>
             </div>
 
             {/* Main Headline */}
@@ -67,38 +71,38 @@ export default function Hero({ onOpenContact }) {
               </a>
             </div>
 
-            {/* Informações Verídicas e Reais da Empresa (Sem 'Seg - Sex') */}
-            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-slate-800/80 max-w-lg mx-auto lg:mx-0">
+            {/* Informações Verídicas e Reais da Empresa (Harmonioso e sem quebras) */}
+            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-slate-800/80 max-w-xl mx-auto lg:mx-0">
               <div className="text-center lg:text-left">
                 <div className="text-2xl sm:text-3xl font-extrabold text-[#C5A059]">100%</div>
-                <div className="text-xs text-slate-300 font-medium mt-0.5">Sob Medida</div>
-                <div className="text-[10px] text-slate-500">Desenho exclusivo</div>
+                <div className="text-xs text-slate-200 font-semibold mt-0.5">Sob Medida</div>
+                <div className="text-[10px] text-slate-400">Desenho exclusivo</div>
               </div>
               <div className="text-center lg:text-left border-x border-slate-800/80 px-2 sm:px-4">
-                <div className="text-2xl sm:text-3xl font-extrabold text-white">Dedicado</div>
-                <div className="text-xs text-slate-300 font-medium mt-0.5">Suporte Especializado</div>
-                <div className="text-[10px] text-slate-500">Atendimento consultivo</div>
+                <div className="text-2xl sm:text-3xl font-extrabold text-white">Suporte</div>
+                <div className="text-xs text-slate-200 font-semibold mt-0.5">Dedicado</div>
+                <div className="text-[10px] text-slate-400">Atendimento próximo</div>
               </div>
               <div className="text-center lg:text-left">
                 <div className="text-2xl sm:text-3xl font-extrabold text-white">Direto</div>
-                <div className="text-xs text-slate-300 font-medium mt-0.5">Com Especialista</div>
-                <div className="text-[10px] text-slate-500">Sem intermediários</div>
+                <div className="text-xs text-slate-200 font-semibold mt-0.5">Com Especialista</div>
+                <div className="text-[10px] text-slate-400">Sem intermediários</div>
               </div>
             </div>
 
           </div>
 
-          {/* Right Column / Hero Operations Image Showcase (Sem hover na imagem) */}
+          {/* Right Column / Hero Operations Image Showcase (Estático, sem hover) */}
           <div className="lg:col-span-6 flex justify-center">
             <div className="relative w-full max-w-2xl">
               
-              {/* Outer Golden Ambient Glow (Estático, sem hover) */}
+              {/* Outer Golden Ambient Glow */}
               <div className="absolute -inset-1.5 bg-gradient-to-r from-[#C5A059]/25 via-slate-700/15 to-[#C5A059]/20 rounded-3xl blur-2xl opacity-75"></div>
 
               {/* Image Frame Card */}
               <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-700/80 bg-slate-950 shadow-2xl shadow-black">
                 
-                {/* Main Visual (Estático, sem zoom no hover) */}
+                {/* Main Visual */}
                 <div className="relative aspect-[4/3] w-full overflow-hidden">
                   <img
                     src={heroImg}
@@ -113,8 +117,8 @@ export default function Hero({ onOpenContact }) {
                 <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 p-3 sm:p-3.5 rounded-xl bg-slate-950/85 backdrop-blur-md border border-slate-800/90 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <span className="relative flex h-2.5 w-2.5">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#DFBF79] opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#C5A059]"></span>
                     </span>
                     <div className="text-left">
                       <div className="text-xs font-bold text-white tracking-wide">
@@ -133,7 +137,7 @@ export default function Hero({ onOpenContact }) {
 
               </div>
 
-              {/* Cardzinho Flutuante Superior de Automações & RPA (Estático, sem hover) */}
+              {/* Cardzinho Flutuante Superior de Automações & RPA */}
               <div className="hidden sm:flex absolute -top-4 -right-4 bg-slate-900/95 border border-[#C5A059]/40 backdrop-blur-md rounded-xl px-3.5 py-2.5 shadow-xl items-center gap-2.5 z-20">
                 <div className="p-1.5 rounded-lg bg-[#C5A059]/10 text-[#C5A059]">
                   <Cpu className="w-4 h-4" />
