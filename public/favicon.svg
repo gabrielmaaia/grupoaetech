@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="16" fill="#06080C"/>
+  <rect width="62" height="62" x="1" y="1" rx="15" fill="none" stroke="#C5A059" stroke-width="2" opacity="0.6"/>
+  <text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle" font-family="'Inter', sans-serif" font-weight="900" font-size="34" fill="#C5A059">
+    Æ
+  </text>
+</svg>
