@@ -17,7 +17,7 @@ export default function Footer() {
   const whatsappUrl = getWhatsAppLink("Olá! Gostaria de falar com um especialista da Ætech sobre soluções para a minha empresa.");
 
   return (
-    <footer id="contato" className="bg-[#05070B] border-t border-slate-800/80 text-slate-300 relative scroll-mt-24">
+    <footer id="contato" className="bg-[#05070B] border-t border-slate-800/80 text-slate-300 relative scroll-mt-40">
       
       {/* Contact Banner / Direct Call Section */}
       <div className="relative -top-12 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
