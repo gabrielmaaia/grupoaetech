@@ -55,7 +55,7 @@ export default function About() {
             return (
               <div
                 key={index}
-                className="relative rounded-2xl bg-slate-900/60 border border-slate-800/90 hover:border-[#C5A059]/40 p-8 flex flex-col justify-start shadow-lg shadow-black/40 transition-all duration-300"
+                className="relative rounded-2xl bg-slate-900/60 border border-slate-800/90 p-8 flex flex-col justify-start shadow-lg shadow-black/40"
               >
                 <div className="w-12 h-12 rounded-xl bg-slate-800/80 border border-slate-700/80 flex items-center justify-center text-[#C5A059] shadow-sm mb-6">
                   <Icon className="w-6 h-6" />

@@ -85,10 +85,10 @@ export default function Services({ onSelectService }) {
             return (
               <div
                 key={index}
-                className={`relative rounded-2xl flex flex-col justify-between transition-all duration-300 p-6 sm:p-7 ${
+                className={`relative rounded-2xl flex flex-col justify-between p-6 sm:p-7 ${
                   service.popular
                     ? 'bg-gradient-to-b from-slate-900 via-slate-900 to-[#121927] border-2 border-[#C5A059] shadow-xl shadow-[#C5A059]/15 -translate-y-1 lg:-translate-y-2'
-                    : 'bg-slate-900/80 border border-slate-800 hover:border-[#C5A059]/50 shadow-lg hover:shadow-xl hover:shadow-[#C5A059]/10 hover:-translate-y-1'
+                    : 'bg-slate-900/80 border border-slate-800 shadow-lg'
                 }`}
               >
                 {/* Popular Pill */}
