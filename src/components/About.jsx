@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cpu, Code2, Database, CheckCircle2 } from 'lucide-react';
+import { Cpu, Code2, Database } from 'lucide-react';
 
 export default function About() {
   const pillars = [
@@ -27,7 +27,7 @@ export default function About() {
   ];
 
   return (
-    <section id="quem-somos" className="py-24 bg-[#080B10] relative">
+    <section id="quem-somos" className="py-24 bg-[#080B10] relative scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -45,33 +45,27 @@ export default function About() {
           </p>
         </div>
 
-        {/* 3 Pillars Grid (Estáticos, sem efeito de clique/hover falso) */}
+        {/* 3 Pillars Grid (Limpos, sem repetições redundantes) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
           {pillars.map((pillar, index) => {
             const Icon = pillar.icon;
             return (
               <div
                 key={index}
-                className="relative rounded-2xl bg-slate-900/50 border border-slate-800/90 p-8 flex flex-col justify-between shadow-lg shadow-black/40"
+                className="relative rounded-2xl bg-slate-900/50 border border-slate-800/90 p-8 flex flex-col justify-start shadow-lg shadow-black/40"
               >
-                <div>
-                  <div className="w-12 h-12 rounded-xl bg-slate-800/80 border border-slate-700/80 flex items-center justify-center text-[#C5A059] shadow-sm">
-                    <Icon className="w-6 h-6" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mt-6">
-                    {pillar.title}
-                  </h3>
-                  <div className="text-xs font-semibold text-[#C5A059] mt-1 mb-3">
-                    {pillar.subtitle}
-                  </div>
-                  <p className="text-sm text-slate-400 leading-relaxed">
-                    {pillar.description}
-                  </p>
+                <div className="w-12 h-12 rounded-xl bg-slate-800/80 border border-slate-700/80 flex items-center justify-center text-[#C5A059] shadow-sm mb-6">
+                  <Icon className="w-6 h-6" />
                 </div>
-                <div className="mt-8 pt-4 border-t border-slate-800/80 flex items-center gap-2 text-xs font-medium text-slate-400">
-                  <CheckCircle2 className="w-4 h-4 text-[#C5A059]" />
-                  <span>Metodologia Ágil e Engenharia Contínua</span>
+                <h3 className="text-xl font-bold text-white mb-1">
+                  {pillar.title}
+                </h3>
+                <div className="text-xs font-semibold text-[#C5A059] mb-3">
+                  {pillar.subtitle}
                 </div>
+                <p className="text-sm text-slate-400 leading-relaxed">
+                  {pillar.description}
+                </p>
               </div>
             );
           })}

@@ -18,7 +18,7 @@ export default function Footer() {
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   return (
-    <footer id="contato" className="bg-[#05070B] border-t border-slate-800/80 text-slate-300 relative">
+    <footer id="contato" className="bg-[#05070B] border-t border-slate-800/80 text-slate-300 relative scroll-mt-24">
       
       {/* Contact Banner / Direct Call Section */}
       <div className="relative -top-12 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

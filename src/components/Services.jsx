@@ -73,7 +73,7 @@ export default function Services({ onSelectService }) {
   ];
 
   return (
-    <section id="servicos" className="py-24 bg-gradient-to-b from-[#080B10] via-[#0B0F17] to-[#080B10] relative">
+    <section id="servicos" className="py-24 bg-gradient-to-b from-[#080B10] via-[#0B0F17] to-[#080B10] relative scroll-mt-24">
       {/* Decorative background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-7xl h-[400px] bg-[#C5A059]/5 rounded-full blur-[160px] pointer-events-none"></div>
 
