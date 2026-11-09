@@ -187,7 +187,7 @@ export default function Services({ onSelectService }) {
           <span className="hidden sm:inline text-slate-700">•</span>
           <span className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059]"></span>
-            Suporte e Monitoramento Especializado
+            Suporte e Atendimento Especializado
           </span>
         </div>
 
