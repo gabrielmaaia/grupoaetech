@@ -178,9 +178,9 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MessageCircle className="w-5 h-5 text-[#C5A059] flex-shrink-0 mt-0.5" />
                 <div>
-                  <div className="text-xs text-slate-500 font-medium">Atendimento Rápido</div>
-                  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-[#DFBF79] hover:underline font-medium">
-                    Atendimento via WhatsApp
+                  <div className="text-xs text-slate-500 font-medium">WhatsApp Corporativo</div>
+                  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#C5A059] transition-colors font-medium">
+                    {companyConfig.phoneDisplay}
                   </a>
                 </div>
               </li>

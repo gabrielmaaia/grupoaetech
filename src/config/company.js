@@ -7,8 +7,8 @@ export const companyConfig = {
   domain: 'grupoaetech.com.br',
   domainUrl: 'https://grupoaetech.com.br',
   email: 'contato@grupoaetech.com.br',
-  phoneDisplay: import.meta.env.VITE_PHONE_DISPLAY || '(79) 99999-9999',
-  whatsappRaw: import.meta.env.VITE_WHATSAPP_RAW || '5579999999999',
+  phoneDisplay: import.meta.env.VITE_PHONE_DISPLAY || '+55 (79) 9998-1909',
+  whatsappRaw: import.meta.env.VITE_WHATSAPP_RAW || '557999981909',
   location: {
     city: 'Aracaju',
     state: 'Sergipe',
@@ -16,7 +16,7 @@ export const companyConfig = {
     display: 'Aracaju, Sergipe - Brasil',
   },
   social: {
-    whatsapp: `https://wa.me/${import.meta.env.VITE_WHATSAPP_RAW || '5579999999999'}`,
+    whatsapp: `https://wa.me/${import.meta.env.VITE_WHATSAPP_RAW || '557999981909'}`,
     instagram: 'https://instagram.com/aetech.se',
     facebook: 'https://facebook.com/grupoaetech',
   },
