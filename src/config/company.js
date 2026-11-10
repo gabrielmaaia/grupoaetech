@@ -20,6 +20,7 @@ export const companyConfig = {
     instagram: 'https://instagram.com/grupoaetech',
     facebook: 'https://facebook.com/grupoaetech',
   },
+  instagramFeedId: 'tfneVUILFXLSTafmo6WQ', // Feed ID do Behold para carrossel dinâmico
   services: [
     {
       id: 'automacao',

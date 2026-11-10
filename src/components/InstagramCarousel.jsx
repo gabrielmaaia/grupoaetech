@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Heart, MessageCircle, ExternalLink } from 'lucide-react';
@@ -10,11 +10,11 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 export default function InstagramCarousel() {
-  // Lista de posts pronta para receber imagens e links reais do Instagram da Ætech
-  const posts = [
+  // Posts padrão com temas reais da empresa caso o feed dinâmico não esteja ativo ou esteja carregando
+  const defaultPosts = [
     {
       id: 1,
-      image: null, // Substituir pela URL ou import de imagem real do post
+      image: null,
       postUrl: companyConfig.social.instagram,
       tag: 'Engenharia de Dados',
       title: 'Da Planilha ao Banco de Dados',
@@ -86,6 +86,53 @@ export default function InstagramCarousel() {
     },
   ];
 
+  const [posts, setPosts] = useState(defaultPosts);
+
+  // Busca as postagens reais automaticamente caso haja um Feed ID do Behold configurado
+  useEffect(() => {
+    if (!companyConfig.instagramFeedId) return;
+
+    fetch(`https://feeds.behold.so/${companyConfig.instagramFeedId}`)
+      .then((res) => {
+        if (!res.ok) throw new Error('Falha ao carregar feed do Instagram');
+        return res.json();
+      })
+      .then((data) => {
+        const rawPosts = Array.isArray(data) ? data : data.posts;
+        if (rawPosts && rawPosts.length > 0) {
+          const livePosts = rawPosts.map((post, idx) => {
+            const imageUrl = post.mediaType === 'VIDEO' 
+              ? (post.thumbnailUrl || post.mediaUrl) 
+              : (post.mediaUrl || post.thumbnailUrl);
+
+            const cleanCaption = (post.prunedCaption || post.caption || '').trim();
+            const firstLine = cleanCaption.split('\n')[0].trim() || 'Post no Instagram';
+            const dateFormatted = post.timestamp
+              ? new Date(post.timestamp).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' })
+              : 'Recente';
+
+            return {
+              id: post.id || idx,
+              image: imageUrl,
+              postUrl: post.permalink || companyConfig.social.instagram,
+              tag: post.hashtags && post.hashtags[0] ? `#${post.hashtags[0]}` : `@${data.username || 'instagram'}`,
+              title: firstLine.length > 35 ? firstLine.slice(0, 32) + '...' : firstLine,
+              caption: cleanCaption || 'Confira esta postagem no Instagram.',
+              likes: String(post.likeCount || 0),
+              comments: String(post.commentsCount || 0),
+              date: dateFormatted,
+              gradient: 'from-amber-900/40 via-slate-900 to-black',
+            };
+          });
+
+          setPosts(livePosts);
+        }
+      })
+      .catch((err) => {
+        console.warn('Feed dinâmico não disponível, usando posts padrão da Ætech:', err);
+      });
+  }, []);
+
   return (
     <section id="mural" className="py-24 bg-[#080B10] relative overflow-hidden scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -122,10 +169,11 @@ export default function InstagramCarousel() {
         {/* Swiper Carousel */}
         <div className="relative">
           <Swiper
+            key={posts.length}
             modules={[Autoplay, Pagination]}
             spaceBetween={20}
             slidesPerView={1}
-            loop={true}
+            loop={posts.length >= 4}
             autoplay={{
               delay: 3200,
               disableOnInteraction: false,
@@ -169,7 +217,7 @@ export default function InstagramCarousel() {
 
                     {/* Gradient overlay for readability if real image is present */}
                     {post.image && (
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/60 pointer-events-none"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-black/60 pointer-events-none"></div>
                     )}
 
                     {/* Background Tech Mesh lines (fallback when no image) */}
