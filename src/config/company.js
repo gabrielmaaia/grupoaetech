@@ -17,10 +17,10 @@ export const companyConfig = {
   },
   social: {
     whatsapp: `https://wa.me/${import.meta.env.VITE_WHATSAPP_RAW || '5579999999999'}`,
-    instagram: 'https://instagram.com/grupoaetech',
+    instagram: 'https://instagram.com/aetech.se',
     facebook: 'https://facebook.com/grupoaetech',
   },
-  instagramFeedId: import.meta.env.VITE_INSTAGRAM_FEED_ID || '',
+  instagramFeedId: import.meta.env.VITE_INSTAGRAM_FEED_ID || 'xbR67YOVCvnd36PX7ZL4',
   services: [
     {
       id: 'automacao',
