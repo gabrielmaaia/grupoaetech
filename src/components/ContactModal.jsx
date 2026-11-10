@@ -1,5 +1,14 @@
-import React, { useState } from 'react';
-import { X, MessageCircle, Send, Sparkles, Building2, User, Phone, CheckCircle } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { 
+  X, 
+  Sparkles, 
+  Building2, 
+  User, 
+  CheckCircle, 
+  ChevronDown, 
+  Check 
+} from 'lucide-react';
+import { WhatsAppIcon } from './BrandIcons';
 import { companyConfig, getWhatsAppLink } from '../config/company';
 
 export default function ContactModal({ isOpen, onClose, defaultService = '' }) {
@@ -10,6 +19,38 @@ export default function ContactModal({ isOpen, onClose, defaultService = '' }) {
     service: defaultService || 'Automação de Processos',
     message: '',
   });
+
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const serviceOptions = [
+    { label: 'Automação de Processos', value: 'Automação de Processos' },
+    { label: 'Desenvolvimento de Sistemas', value: 'Desenvolvimento de Sistemas' },
+    { label: 'Infraestrutura de Dados', value: 'Infraestrutura de Dados' },
+    { label: 'Outro / Consultoria Geral', value: 'Consultoria Geral' },
+  ];
+
+  // Sincroniza o serviço padrão selecionado ao abrir pelo card
+  useEffect(() => {
+    if (defaultService) {
+      setFormData((prev) => ({ ...prev, service: defaultService }));
+    }
+  }, [defaultService, isOpen]);
+
+  // Fecha o dropdown ao clicar fora
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    }
+    if (dropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [dropdownOpen]);
 
   if (!isOpen) return null;
 
@@ -23,10 +64,10 @@ export default function ContactModal({ isOpen, onClose, defaultService = '' }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm animate-fadeIn">
       {/* Modal Dialog Card */}
       <div 
-        className="relative w-full max-w-lg rounded-2xl bg-[#0C111C] border border-[#C5A059]/40 p-6 sm:p-8 shadow-2xl shadow-black overflow-hidden"
+        className="relative w-full max-w-lg rounded-2xl bg-[#0C111C] border border-[#C5A059]/40 p-6 sm:p-8 shadow-2xl shadow-black"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Glow */}
@@ -35,7 +76,7 @@ export default function ContactModal({ isOpen, onClose, defaultService = '' }) {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 text-slate-400 hover:text-white p-1 rounded-lg bg-slate-900 border border-slate-800 transition-colors"
+          className="absolute top-5 right-5 text-slate-400 hover:text-white p-1 rounded-lg bg-slate-900 border border-slate-800 transition-colors cursor-pointer"
           aria-label="Fechar modal"
         >
           <X className="w-5 h-5" />
@@ -91,20 +132,58 @@ export default function ContactModal({ isOpen, onClose, defaultService = '' }) {
               </div>
             </div>
 
+            {/* Custom Select para Serviço de Interesse */}
             <div>
               <label className="block text-xs font-medium text-slate-300 mb-1.5">
                 Serviço de Interesse
               </label>
-              <select
-                value={formData.service}
-                onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-slate-900/90 border border-slate-700/80 rounded-xl text-sm text-white focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] transition-all"
-              >
-                <option value="Automação de Processos">Automação de Processos</option>
-                <option value="Desenvolvimento de Sistemas">Desenvolvimento de Sistemas</option>
-                <option value="Infraestrutura de Dados">Infraestrutura de Dados</option>
-                <option value="Consultoria Geral">Outro / Consultoria Geral</option>
-              </select>
+              <div className="relative" ref={dropdownRef}>
+                <button
+                  type="button"
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                  className={`w-full px-3.5 py-2.5 bg-slate-900/90 border rounded-xl text-sm text-left flex items-center justify-between cursor-pointer transition-all ${
+                    dropdownOpen
+                      ? 'border-[#C5A059] ring-1 ring-[#C5A059] text-white shadow-md shadow-[#C5A059]/10'
+                      : 'border-slate-700/80 text-white hover:border-slate-600'
+                  }`}
+                >
+                  <span className="truncate pr-2 font-medium">
+                    {formData.service}
+                  </span>
+                  <ChevronDown
+                    className={`w-4 h-4 text-[#C5A059] flex-shrink-0 transition-transform duration-200 ${
+                      dropdownOpen ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+
+                {/* Dropdown Options Customizado com o design escuro e dourado */}
+                {dropdownOpen && (
+                  <div className="absolute left-0 right-0 top-full mt-1.5 z-30 rounded-xl bg-[#0B101B] border border-[#C5A059]/50 shadow-2xl shadow-black overflow-hidden py-1 animate-fadeIn">
+                    {serviceOptions.map((option) => {
+                      const isSelected = formData.service === option.label;
+                      return (
+                        <button
+                          key={option.value}
+                          type="button"
+                          onClick={() => {
+                            setFormData({ ...formData, service: option.label });
+                            setDropdownOpen(false);
+                          }}
+                          className={`w-full px-3.5 py-2.5 text-left text-xs sm:text-sm flex items-center justify-between cursor-pointer transition-colors ${
+                            isSelected
+                              ? 'bg-[#C5A059]/15 text-[#DFBF79] font-semibold'
+                              : 'text-slate-300 hover:bg-slate-800/80 hover:text-white'
+                          }`}
+                        >
+                          <span>{option.label}</span>
+                          {isSelected && <Check className="w-4 h-4 text-[#C5A059]" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
@@ -124,9 +203,9 @@ export default function ContactModal({ isOpen, onClose, defaultService = '' }) {
           <div className="pt-2 flex flex-col gap-3">
             <button
               type="submit"
-              className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider text-black bg-gradient-to-r from-[#C5A059] via-[#DFBF79] to-[#C5A059] hover:brightness-110 shadow-lg shadow-[#C5A059]/25 transition-all"
+              className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider text-black bg-gradient-to-r from-[#C5A059] via-[#DFBF79] to-[#C5A059] hover:brightness-110 shadow-lg shadow-[#C5A059]/25 transition-all cursor-pointer"
             >
-              <MessageCircle className="w-4 h-4 fill-current" />
+              <WhatsAppIcon className="w-4 h-4 text-black fill-current" />
               <span>Iniciar Conversa no WhatsApp</span>
             </button>
 
@@ -140,4 +219,3 @@ export default function ContactModal({ isOpen, onClose, defaultService = '' }) {
     </div>
   );
 }
-
