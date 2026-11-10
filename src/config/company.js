@@ -20,7 +20,7 @@ export const companyConfig = {
     instagram: 'https://instagram.com/grupoaetech',
     facebook: 'https://facebook.com/grupoaetech',
   },
-  instagramFeedId: import.meta.env.VITE_INSTAGRAM_FEED_ID || 'tfneVUILFXLSTafmo6WQ',
+  instagramFeedId: import.meta.env.VITE_INSTAGRAM_FEED_ID || '',
   services: [
     {
       id: 'automacao',
