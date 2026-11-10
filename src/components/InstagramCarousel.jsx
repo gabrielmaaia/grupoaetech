@@ -134,7 +134,7 @@ export default function InstagramCarousel() {
   }, []);
 
   return (
-    <section id="mural" className="py-24 bg-[#080B10] relative overflow-hidden scroll-mt-24">
+    <section id="mural" className="py-24 bg-[#080B10] relative overflow-hidden scroll-mt-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
