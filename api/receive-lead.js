@@ -35,8 +35,8 @@ export default async function handler(req, res) {
     return res.status(403).json({ error: 'Origem não autorizada.' });
   }
 
-  const endpoint = process.env.BASE44_LEAD_ENDPOINT;
-  const webhookKey = process.env.LEAD_WEBHOOK_KEY;
+  const endpoint = (process.env.BASE44_LEAD_ENDPOINT || '').trim().replace(/\/+$/, '');
+  const webhookKey = (process.env.LEAD_WEBHOOK_KEY || '').trim();
 
   if (!endpoint || !webhookKey) {
     console.error('Configuração de integração de leads ausente no servidor.');
