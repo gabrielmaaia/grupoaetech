@@ -4,18 +4,19 @@ import {
   Sparkles, 
   Building2, 
   User, 
+  Mail,
   CheckCircle, 
   ChevronDown, 
   Check 
 } from 'lucide-react';
 import { WhatsAppIcon } from './BrandIcons';
-import { companyConfig, getWhatsAppLink } from '../config/company';
+import { getWhatsAppLink } from '../config/company';
 
 export default function ContactModal({ isOpen, onClose, defaultService = '' }) {
   const [formData, setFormData] = useState({
     name: '',
+    email: '',
     company: '',
-    phone: '',
     service: defaultService || 'Automação de Processos',
     message: '',
   });
@@ -56,10 +57,37 @@ export default function ContactModal({ isOpen, onClose, defaultService = '' }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const searchParams = new URLSearchParams(window.location.search);
+    const leadPayload = {
+      full_name: formData.name.trim(),
+      company_name: formData.company.trim(),
+      service_interest: formData.service,
+      message_challenge: formData.message.trim(),
+      email: formData.email.trim(),
+      utm_source: searchParams.get('utm_source') || '',
+      utm_campaign: searchParams.get('utm_campaign') || '',
+    };
+
+    // Envia o lead para a rota privada no servidor (/api/receive-lead) sem expor credenciais no frontend
+    fetch('/api/receive-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(leadPayload),
+      keepalive: true,
+    }).catch(() => {});
+
     const formattedMessage = `Olá! Meu nome é ${formData.name || 'um cliente'}${formData.company ? ` da empresa ${formData.company}` : ''}.\nTenho interesse na área de: *${formData.service}*.\n${formData.message ? `Detalhes: ${formData.message}` : 'Gostaria de agendar uma reunião ou diagnóstico inicial.'}`;
     
     const url = getWhatsAppLink(formattedMessage);
     window.open(url, '_blank', 'noopener,noreferrer');
+    setFormData((prev) => ({
+      ...prev,
+      name: '',
+      email: '',
+      company: '',
+      message: '',
+    }));
     onClose();
   };
 
@@ -98,20 +126,39 @@ export default function ContactModal({ isOpen, onClose, defaultService = '' }) {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1.5">
-              Seu Nome Completo *
-            </label>
-            <div className="relative">
-              <User className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
-              <input
-                type="text"
-                required
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                placeholder="Ex: Carlos Silva"
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-900/90 border border-slate-700/80 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] transition-all"
-              />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-medium text-slate-300 mb-1.5">
+                Seu Nome Completo *
+              </label>
+              <div className="relative">
+                <User className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <input
+                  type="text"
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  placeholder="Ex: Carlos Silva"
+                  className="w-full pl-10 pr-4 py-2.5 bg-slate-900/90 border border-slate-700/80 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] transition-all"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-slate-300 mb-1.5">
+                Seu E-mail *
+              </label>
+              <div className="relative">
+                <Mail className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <input
+                  type="email"
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="carlos@empresa.com"
+                  className="w-full pl-10 pr-4 py-2.5 bg-slate-900/90 border border-slate-700/80 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] transition-all"
+                />
+              </div>
             </div>
           </div>
 
