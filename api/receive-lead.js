@@ -1,6 +1,6 @@
 const ALLOWED_ORIGINS = [
-  'https://grupoaetech.com.br',
-  'https://www.grupoaetech.com.br',
+  'https://aetech-se.com.br',
+  'https://www.aetech-se.com.br',
 ];
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
